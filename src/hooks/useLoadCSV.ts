@@ -9,13 +9,14 @@ export const useLoadCSV = () => {
 
     const result: Array<Product> = [];
 
-    for (let i = 1; i < lines.length; i++) {
+    for (let i = 5; i < lines.length; i++) {
       const line = lines[i].trim();
       if (line) {
         // Usamos una expresión regular para encontrar los campos dentro de comillas dobles
         const idIndex = line.split('"');
         //console.log(idIndex)
         const splitData = line.split(",");
+        console.log("DATO EN CADENA: ", splitData)
         let formatData: Product = {
           active: true,
           productId: "producto-" + splitData[0],
@@ -25,7 +26,7 @@ export const useLoadCSV = () => {
           silverCoins: parseInt(splitData[6]),
           image: splitData[7],
         };
-
+        console.log("DATO: ", formatData)
         if (splitData[2]) {
           formatData.description = splitData[2];
         }
@@ -34,6 +35,8 @@ export const useLoadCSV = () => {
           const partA = idIndex[0].split(",");
           const partB = idIndex[1];
           const partC = idIndex[2].split(",");
+          console.log("ESTO ESTA EN CADENA PARTE B: ", partB)
+          console.log("ESTO ESTA EN CADENA PARTE C: ", partC)
           formatData.description = partB;
           formatData.category = partC[1];
           formatData.goldCoins = parseInt(partC[3]);

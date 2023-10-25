@@ -49,7 +49,7 @@ export const DataTable: React.FC<DataTableType> = ({ data }) => {
               <td>{dato.category}</td>
               <td>{dato.goldCoins}</td>
               <td>{dato.silverCoins}</td>
-              <td>{dato.image}</td>
+              <td><img src={dato.image} width={100} height={100} /></td>
               <td>
                 <button type="button" onClick={handleOpenModal}>
                   Editar
