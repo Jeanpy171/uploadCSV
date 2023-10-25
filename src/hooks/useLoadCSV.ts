@@ -18,7 +18,7 @@ export const useLoadCSV = () => {
         const splitData = line.split(",");
         let formatData: Product = {
           active: true,
-          productId: splitData[0],
+          productId: "producto-" + splitData[0],
           name: splitData[1],
           category: splitData[3],
           goldCoins: parseInt(splitData[5]),

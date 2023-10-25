@@ -9,3 +9,7 @@ export interface Product {
   category: string;
   stock?: number;
 }
+
+export interface DataTable {
+  data: Product[];
+}

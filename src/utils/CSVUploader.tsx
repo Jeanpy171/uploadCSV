@@ -1,6 +1,8 @@
 import React from "react";
 import { Product } from "../interfaces/definitions";
 import { useLoadCSV } from "../hooks/useLoadCSV";
+import { DataTable } from "./DataTable";
+import { addDinamicDocument } from "./firebase";
 
 export const CSVUploader = () => {
   const { elements, loadCSV } = useLoadCSV();
@@ -21,12 +23,23 @@ export const CSVUploader = () => {
     reader.readAsText(files[0]);
   };
 
+  const handleUploadData = () => {
+    elements.map((product) => {
+      addDinamicDocument("products", product.productId, product);
+    });
+  };
+
   return (
     <div>
       <input type="file" accept=".csv" onChange={handleFileUpload} />
-      {elements.map((object) => {
+      <button onClick={handleUploadData}>Upload</button>
+      {/* {elements.map((object) => {
         return <div key={object.productId}>{object.name}</div>;
-      })}
+      })}{elements.map((object) => {
+        return <div key={object.productId}>{object.name}</div>;
+      })} */}
+      <h1>Tabla de Datos</h1>
+      <DataTable data={elements} />
     </div>
   );
 };
